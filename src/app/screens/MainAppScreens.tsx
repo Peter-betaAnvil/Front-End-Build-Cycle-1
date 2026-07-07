@@ -1157,7 +1157,7 @@ function FollowUpsView({
                   <div key={f.id} className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 px-3 sm: px-5 py-2 sm:py-3 hover:bg-muted/30 transition-colors">
                     <AvatarBadge initials={customer?.avatar ?? "?"} />
                     <div className="flex-1 min-w-0">
-                      <p className={`text-xs sm:text-sm font-medium truncate ${f.status === "completed" ? "text-muted-foreground line-through" : "text-foreground"}`}>{f.task}</p>
+                      <p className={`text-xs sm:text-sm  font-medium truncate ${f.status === "completed" ? "text-muted-foreground line-through" : "text-foreground"}`}>{f.task}</p>
                       <p className="text-xs text-muted-foreground truncate">{f.customer}</p>
                     </div>
                     <PriorityBadge priority={f.priority} />
@@ -1343,7 +1343,7 @@ function SettingsView({
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4" onClick={() => setShowConfirmReset(false)}>
           <div className="bg-card rounded-lg border border-border w-full max-w-sm p-6" onClick={(e) => e.stopPropagation()}>
             <h2 className="text-sm sm:text-base font-semibold text-foreground mb-2">Reset all data?</h2>
-            <p className="text-sm text-muted-foreground mb-4">This clears all customers, orders, and activity you've added and clears it up permanently. This can't be undone.</p>
+            <p className="text-sm text-muted-foreground mb-4">This clears all customers, orders, and activity you've added and deletes it permanently. This can't be undone.</p>
             <div className="flex gap-2">
               <button onClick={() => setShowConfirmReset(false)} className="flex-1 px-3 py-2 rounded text-sm bg-card border border-border text-muted-foreground hover:text-foreground transition-colors">Cancel</button>
               <button onClick={() => { onResetData(); setShowConfirmReset(false); }} className="flex-1 px-3 py-2 rounded text-sm bg-red-600 text-white hover:opacity-90 transition-colors">Reset</button>
