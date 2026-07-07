@@ -133,7 +133,7 @@ function StatusBadge({ status }: { status: string }) {
 }
 
 function AvatarBadge({ initials, size = "sm" }: { initials: string; size?: "sm" | "md" | "lg" }) {
-  const sz = size === "lg" ? "w-12 h-12 text-base" : size === "md" ? "w-9 h-9 text-sm" : "w-7 h-7 text-xs";
+  const sz = size === "lg" ? "w-12 h-12 text-sm sm:text-base" : size === "md" ? "w-9 h-9 text-sm" : "w-7 h-7 text-xs";
   return (
     <div className={`${sz} rounded-full flex items-center justify-center font-semibold text-white flex-shrink-0`} style={{ background: "linear-gradient(135deg, #2d3a56 0%, #1e2538 100%)" }}>
       {initials}
@@ -233,13 +233,13 @@ function MetricCard({ label, value, sub, trend, trendUp }: { label: string; valu
 function DashboardView({ onNavigate, activityList }: { onNavigate: (page: string) => void; activityList: typeof activity }) {
   return (
     <div className="flex flex-col gap-6">
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-8">
         <MetricCard label="Total Revenue" value="₦413.8k" sub="this year" trend="+18.4%" trendUp />
         <MetricCard label="Total Customers" value="8" sub="from 6 last month" trend="+2" trendUp />
         <MetricCard label="Orders (30d)" value="12" sub="orders placed" trend="-3" trendUp={false} />
         <MetricCard label="Avg. Order Value" value="₦6,472" sub="across all orders" trend="+₦840" trendUp />
       </div>
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 sm:gap-8">
         <div className="lg:col-span-2 bg-card rounded-lg p-5 border border-border">
           <div className="flex items-center justify-between mb-4">
             <div><h3 className="text-sm font-semibold text-foreground">Revenue</h3><p className="text-xs text-muted-foreground font-mono">Jan — Jul 2026</p></div>
@@ -272,7 +272,7 @@ function DashboardView({ onNavigate, activityList }: { onNavigate: (page: string
           </ResponsiveContainer>
         </div>
       </div>
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 sm:gap-8">
         <div className="lg:col-span-2 bg-card rounded-lg border border-border overflow-hidden">
           <div className="flex items-center justify-between px-5 py-4 border-b border-border">
             <h3 className="text-sm font-semibold text-foreground">Recent Orders</h3>
@@ -342,7 +342,7 @@ function AddCustomerModal({ onClose, onSave }: { onClose: () => void; onSave: (c
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
       <div className="bg-card rounded-lg border border-border w-full max-w-md p-6">
-        <h2 className="text-base font-semibold text-foreground mb-4">Add Customer</h2>
+        <h2 className="text-sm sm:text-base font-semibold text-foreground mb-4">Add Customer</h2>
         <form onSubmit={handleSubmit} className="flex flex-col gap-3">
           <input required type="text" placeholder="Full name" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} className="w-full px-3 py-2 bg-background border border-border rounded text-sm text-foreground" />
           <input required type="email" placeholder="Email address" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} className="w-full px-3 py-2 bg-background border border-border rounded text-sm text-foreground" />
@@ -409,7 +409,7 @@ function AddOrderModal({
       <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
         <div className="bg-card rounded-lg border border-border w-full max-w-sm p-6 text-center">
           <AlertCircle size={28} className="mx-auto mb-3 text-amber-500" />
-          <h2 className="text-base font-semibold text-foreground mb-1">No customers yet</h2>
+          <h2 className="text-sm sm:text-base font-semibold text-foreground mb-1">No customers yet</h2>
           <p className="text-sm text-muted-foreground mb-4">Add a customer first before creating an order.</p>
           <button onClick={onClose} className="w-full px-3 py-2 rounded text-sm bg-primary text-primary-foreground hover:opacity-90 transition-colors">
             Got it
@@ -422,7 +422,7 @@ function AddOrderModal({
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
       <div className="bg-card rounded-lg border border-border w-full max-w-md p-6">
-        <h2 className="text-base font-semibold text-foreground mb-4">Add Order</h2>
+        <h2 className="text-sm sm:text-base font-semibold text-foreground mb-4">Add Order</h2>
         <form onSubmit={handleSubmit} className="flex flex-col gap-3">
           <select
             required
@@ -545,7 +545,7 @@ function ImportCustomersModal({ onClose, onImport }: { onClose: () => void; onIm
       <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
         <div className="bg-card rounded-lg border border-border w-full max-w-sm p-6 text-center">
           <CheckCircle size={32} className="mx-auto mb-3 text-emerald-500" />
-          <h2 className="text-base font-semibold text-foreground mb-1">Customers added</h2>
+          <h2 className="text-sm sm:text-base font-semibold text-foreground mb-1">Customers added</h2>
           <p className="text-sm text-muted-foreground mb-4">{parsedCount} customer{parsedCount === 1 ? "" : "s"} imported successfully.</p>
           <button onClick={onClose} className="w-full px-3 py-2 rounded text-sm bg-primary text-primary-foreground hover:opacity-90 transition-colors">
             Done
@@ -558,7 +558,7 @@ function ImportCustomersModal({ onClose, onImport }: { onClose: () => void; onIm
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
       <div className="bg-card rounded-lg border border-border w-full max-w-md p-6">
-        <h2 className="text-base font-semibold text-foreground mb-1">Import Customers</h2>
+        <h2 className="text-sm sm:text-base font-semibold text-foreground mb-1">Import Customers</h2>
         <p className="text-xs text-muted-foreground mb-4">Upload a CSV with columns: name, email, phone, location, tier</p>
         <button type="button" onClick={downloadSample} className="text-xs text-primary hover:underline mb-4 inline-block">Download sample CSV</button>
 
@@ -609,7 +609,7 @@ function CustomersView({ customerList, onAddCustomer, onImportCustomers, onSelec
   });
   return (
     <>
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-3 sm:gap-8">
       <div className="flex items-center gap-3 flex-wrap">
         <div className="relative flex-1 min-w-48">
           <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
@@ -619,7 +619,7 @@ function CustomersView({ customerList, onAddCustomer, onImportCustomers, onSelec
         <button onClick={() => setShowAddModal(true)} className="flex items-center gap-1.5 px-3 py-1.5 bg-primary text-primary-foreground rounded text-xs font-medium hover:bg-primary/90 transition-colors"><Plus size={13} />Add Customer</button>
         <button onClick={() => setShowImportModal(true)} className="flex items-center gap-1.5 px-3 py-1.5 bg-card border border-border rounded text-xs text-muted-foreground hover:text-foreground transition-colors"><Download size={13} />Import</button>
       </div>
-      <div className="bg-card rounded-lg border border-border overflow-hidden">
+      <div className="bg-card rounded-lg border border-border overflow-x-auto">
         <table className="w-full text-sm">
           <thead><tr className="border-b border-border">{["Customer","Tier","Location","Orders","Total Spent","Last Order",].map((h, i) => <th key={i} className="text-left px-4 py-3 text-xs font-mono text-muted-foreground uppercase tracking-wider">{h}</th>)}</tr></thead>
           <tbody className="divide-y divide-border">
@@ -681,7 +681,7 @@ function EditCustomerModal({
       onClick={onClose}
     >
       <div
-        className="bg-card rounded-lg border border-border p-5 w-full max-w-sm flex flex-col gap-4"
+        className="bg-card rounded-lg border border-border p-5 w-full max-w-sm flex flex-col gap-3 sm:gap-8"
         onClick={(e) => e.stopPropagation()}
       >
         <h3 className="text-sm font-semibold text-foreground">Edit Customer</h3>
@@ -769,7 +769,7 @@ function EditOrderModal({
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4" onClick={onClose}>
       <div className="bg-card rounded-lg border border-border w-full max-w-md p-6" onClick={(e) => e.stopPropagation()}>
-        <h2 className="text-base font-semibold text-foreground mb-4">Edit Order — {order.id}</h2>
+        <h2 className="text-sm sm:text-base font-semibold text-foreground mb-4">Edit Order — {order.id}</h2>
         <form onSubmit={handleSubmit} className="flex flex-col gap-3">
           <input required type="text" placeholder="Product" value={form.product} onChange={(e) => setForm({ ...form, product: e.target.value })} className="w-full px-3 py-2 bg-background border border-border rounded text-sm text-foreground" />
           <input required type="number" min="0" placeholder="Price per item (₦)" value={form.price} onChange={(e) => setForm({ ...form, price: e.target.value })} className="w-full px-3 py-2 bg-background border border-border rounded text-sm text-foreground" />
@@ -815,13 +815,13 @@ function CustomerDetail({
         <ChevronRight size={12} className="text-muted-foreground" />
         <span className="text-xs text-foreground font-mono">{customer.name}</span>
       </div>
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-        <div className="bg-card rounded-lg border border-border p-5 flex flex-col gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 sm:gap-8">
+        <div className="bg-card rounded-lg border border-border p-5 flex flex-col gap-3 sm:gap-8">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <AvatarBadge initials={customer.avatar} size="lg" />
               <div>
-                <h2 className="text-base font-semibold text-foreground">{customer.name}</h2>
+                <h2 className="text-sm sm:text-base font-semibold text-foreground">{customer.name}</h2>
                 <span className="text-xs font-mono font-semibold" style={{ color: tierColor[customer.tier] }}>{customer.tier}</span>
               </div>
             </div>
@@ -839,10 +839,10 @@ function CustomerDetail({
           </div>
           <div className="border-t border-border pt-3 grid grid-cols-2 gap-3">
             <div><p className="text-xs text-muted-foreground font-mono">Orders</p><p className="text-lg font-semibold text-foreground font-mono">{customer.totalOrders}</p></div>
-            <div><p className="text-xs text-muted-foreground font-mono">Spent</p><p className="text-base font-semibold text-foreground font-mono">{fmt(customer.totalSpent)}</p></div>
+            <div><p className="text-xs text-muted-foreground font-mono">Spent</p><p className="text-sm sm:text-base font-semibold text-foreground font-mono">{fmt(customer.totalSpent)}</p></div>
           </div>
         </div>
-        <div className="lg:col-span-2 bg-card rounded-lg border border-border overflow-hidden">
+        <div className="lg:col-span-2 bg-card rounded-lg border border-border overflow-x-auto">
           <div className="px-5 py-4 border-b border-border"><h3 className="text-sm font-semibold text-foreground">Order History</h3></div>
           {customerOrders.length === 0 ? <div className="px-5 py-8 text-center text-sm text-muted-foreground">No orders found</div> : (
             <table className="w-full text-sm">
@@ -898,7 +898,7 @@ function OrdersView({
   const totalFiltered = filtered.reduce((s, o) => s + o.amount, 0);
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-3 sm:gap-8">
       <div className="flex items-center gap-3 flex-wrap">
         <div className="flex gap-1.5 flex-wrap">{statuses.map((s) => <button key={s} onClick={() => setStatusFilter(s)} className={`px-3 py-1.5 rounded text-xs font-medium capitalize transition-colors ${statusFilter === s ? "bg-primary text-primary-foreground" : "bg-card border border-border text-muted-foreground hover:text-foreground"}`}>{s}</button>)}</div>
         <div className="ml-auto flex items-center gap-2">
@@ -912,7 +912,7 @@ function OrdersView({
           <button className="flex items-center gap-1.5 px-3 py-1.5 bg-card border border-border rounded text-xs text-muted-foreground hover:text-foreground transition-colors"><Filter size={13} />Filter</button>
         </div>
       </div>
-       <div className="bg-card rounded-lg border border-border overflow-hidden">
+       <div className="bg-card rounded-lg border border-border overflow-x-auto">
         <table className="w-full text-sm">
           <thead>
             <tr className="border-b border-border">
@@ -1006,7 +1006,7 @@ function AddFollowUpModal({
       <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
         <div className="bg-card rounded-lg border border-border w-full max-w-sm p-6 text-center">
           <AlertCircle size={28} className="mx-auto mb-3 text-amber-500" />
-          <h2 className="text-base font-semibold text-foreground mb-1">No customers yet</h2>
+          <h2 className="text-sm sm:text-base font-semibold text-foreground mb-1">No customers yet</h2>
           <p className="text-sm text-muted-foreground mb-4">Add a customer first before creating a follow-up.</p>
           <button onClick={onClose} className="w-full px-3 py-2 rounded text-sm bg-primary text-primary-foreground hover:opacity-90 transition-colors">
             Got it
@@ -1019,7 +1019,7 @@ function AddFollowUpModal({
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4" onClick={onClose}>
       <div className="bg-card rounded-lg border border-border w-full max-w-md p-6" onClick={(e) => e.stopPropagation()}>
-        <h2 className="text-base font-semibold text-foreground mb-4">Add Follow-up</h2>
+        <h2 className="text-sm sm:text-base font-semibold text-foreground mb-4">Add Follow-up</h2>
         <form onSubmit={handleSubmit} className="flex flex-col gap-3">
           <div>
             <label className="text-xs text-muted-foreground font-mono mb-1 block">Customer</label>
@@ -1123,7 +1123,7 @@ function FollowUpsView({
 
   return (
     <>
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-3 sm:gap-8">
         <div className="flex items-center gap-3 flex-wrap">
           <div className="flex gap-1.5">
             {(["Pending", "Completed", "All"] as const).map((s) => (
@@ -1200,7 +1200,7 @@ function FollowUpsView({
 
 function ActivityView({ activityList }: { activityList: typeof activity }) {
   return (
-    <div className="flex flex-col gap-4 max-w-2xl">
+    <div className="flex flex-col gap-3 sm:gap-8 max-w-2xl">
       <div className="bg-card rounded-lg border border-border overflow-hidden">
         <div className="px-5 py-4 border-b border-border"><h3 className="text-sm font-semibold text-foreground">All Activity</h3><p className="text-xs text-muted-foreground font-mono mt-0.5">Last 7 days</p></div>
         <div className="divide-y divide-border">
@@ -1277,7 +1277,7 @@ function SettingsView({
       const [showConfirmReset, setShowConfirmReset] = useState(false);
 
       return (
-      <div className="flex flex-col gap-4 max-w-2xl">
+      <div className="flex flex-col gap-3 sm:gap-8 max-w-2xl">
         <div className="bg-card rounded-lg border border-border overflow-hidden">
           <div className="px-5 py-4 border-b border-border">
             <h3 className="text-sm font-semibold text-foreground">Appearance</h3>
@@ -1342,8 +1342,8 @@ function SettingsView({
       {showConfirmReset && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4" onClick={() => setShowConfirmReset(false)}>
           <div className="bg-card rounded-lg border border-border w-full max-w-sm p-6" onClick={(e) => e.stopPropagation()}>
-            <h2 className="text-base font-semibold text-foreground mb-2">Reset all data?</h2>
-            <p className="text-sm text-muted-foreground mb-4">This clears all customers, orders, and activity you've added and deletes it permanently. This can't be undone.</p>
+            <h2 className="text-sm sm:text-base font-semibold text-foreground mb-2">Reset all data?</h2>
+            <p className="text-sm text-muted-foreground mb-4">This clears all customers, orders, and activity you've added and clears it up permanently. This can't be undone.</p>
             <div className="flex gap-2">
               <button onClick={() => setShowConfirmReset(false)} className="flex-1 px-3 py-2 rounded text-sm bg-card border border-border text-muted-foreground hover:text-foreground transition-colors">Cancel</button>
               <button onClick={() => { onResetData(); setShowConfirmReset(false); }} className="flex-1 px-3 py-2 rounded text-sm bg-red-600 text-white hover:opacity-90 transition-colors">Reset</button>
@@ -1441,9 +1441,9 @@ export default function CRMDashboard({ onSignOut }: { onSignOut: () => void }) {
     <div className={`flex h-screen bg-background overflow-hidden ${theme === "dark" ? "dark" : ""}`} style={{ fontFamily: "'Inter', sans-serif" }}>
       <Sidebar active={page} onNav={handleNav} collapsed={collapsed} onToggle={() => setCollapsed((p) => !p)} onSignOut={onSignOut} />
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
-        <header className="flex items-center justify-between px-6 py-4 bg-card border-b border-border flex-shrink-0">
+        <header className="flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 bg-card border-b border-border flex-shrink-0">
           <div>
-            <h1 className="text-base font-semibold text-foreground">{selectedCustomer ? selectedCustomer.name : pageTitles[page]}</h1>
+            <h1 className="text-sm sm:text-base font-semibold text-foreground">{selectedCustomer ? selectedCustomer.name : pageTitles[page]}</h1>
             <p className="text-xs text-muted-foreground font-mono">{new Date().toLocaleDateString("en-US", { weekday: "long", year: "numeric", month: "long", day: "numeric" })}</p>
           </div>
           <div className="flex items-center gap-3">
