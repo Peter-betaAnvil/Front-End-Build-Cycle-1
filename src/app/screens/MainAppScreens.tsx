@@ -232,7 +232,7 @@ function MetricCard({ label, value, sub, trend, trendUp }: { label: string; valu
 
 function DashboardView({ onNavigate, activityList }: { onNavigate: (page: string) => void; activityList: typeof activity }) {
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-4">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-8">
         <MetricCard label="Total Revenue" value="₦413.8k" sub="this year" trend="+18.4%" trendUp />
         <MetricCard label="Total Customers" value="8" sub="from 6 last month" trend="+2" trendUp />
@@ -1154,10 +1154,10 @@ function FollowUpsView({
                 const isOverdue = f.status === "pending" && f.dueDate < today;
                 const customer = customerList.find((c) => c.id === f.customerId);
                 return (
-                  <div key={f.id} className="flex items-center gap-3 px-5 py-3 hover:bg-muted/30 transition-colors">
+                  <div key={f.id} className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 px-3 sm: px-5 py-2 sm:py-3 hover:bg-muted/30 transition-colors">
                     <AvatarBadge initials={customer?.avatar ?? "?"} />
                     <div className="flex-1 min-w-0">
-                      <p className={`text-sm font-medium truncate ${f.status === "completed" ? "text-muted-foreground line-through" : "text-foreground"}`}>{f.task}</p>
+                      <p className={`text-xs sm:text-sm font-medium truncate ${f.status === "completed" ? "text-muted-foreground line-through" : "text-foreground"}`}>{f.task}</p>
                       <p className="text-xs text-muted-foreground truncate">{f.customer}</p>
                     </div>
                     <PriorityBadge priority={f.priority} />
