@@ -233,7 +233,7 @@ function MetricCard({ label, value, sub, trend, trendUp }: { label: string; valu
 function DashboardView({ onNavigate, activityList }: { onNavigate: (page: string) => void; activityList: typeof activity }) {
   return (
     <div className="flex flex-col gap-6">
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-8">
         <MetricCard label="Total Revenue" value="₦413.8k" sub="this year" trend="+18.4%" trendUp />
         <MetricCard label="Total Customers" value="8" sub="from 6 last month" trend="+2" trendUp />
         <MetricCard label="Orders (30d)" value="12" sub="orders placed" trend="-3" trendUp={false} />
@@ -1145,7 +1145,7 @@ function FollowUpsView({
           </button>
         </div>
 
-        <div className="bg-card rounded-lg border border-border overflow-hidden">
+        <div className="bg-card rounded-lg border border-border overflow-x-auto">
           {filtered.length === 0 ? (
             <div className="px-5 py-10 text-center text-sm text-muted-foreground">No follow-ups here.</div>
           ) : (
@@ -1183,7 +1183,7 @@ function FollowUpsView({
           )}
         </div>
       </div>
-
+          
       {showAddModal && (
         <AddFollowUpModal
           customerList={customerList}
